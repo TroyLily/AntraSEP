@@ -117,15 +117,5 @@ from Employees e left join Employees r on e.EmployeeID = r.ReportsTo
 group by e.FirstName
 having count(r.ReportsTo) > 2
 
-select
-from 
-
-select *
-from Customers
-
-select *
-from Suppliers
-
-select *
-from [Order Details]
-order by OrderID
+select c.City, c.CompanyName [Name], c.ContactName [Contact Name], c.Relationship [Type]
+from [Customer and Suppliers by City] c
