@@ -56,13 +56,57 @@ exec sp_product_order_city Chai, @CityName out
 print @CityName
 end 
 
+create table people_your_last_name(
+PplId int, 
+PplName varchar(20), 
+CityId int
+)
+create table city_your_last_name(
+CityId int, 
+CityName varchar(20)
+)
+insert into people_your_last_name values (1, 'Aaron Rodgers', 2)
+insert into people_your_last_name values (2, 'Russell Wilson', 1)
+insert into people_your_last_name values (3, 'Jody Nelson', 2)
+insert into city_your_last_name values (1, 'Seattle')
+insert into city_your_last_name values (2, 'Green Bay')
 
-drop proc sp_product_order_quantity
+update city_your_last_name 
+set CityName = 'Madison'
+where CityName = 'Seattle'
 
-select * from Orders
+create view Packers_your_name
+as
+select p.PplName
+from people_your_last_name p join city_your_last_name c on p.CityId = c.CityId
+where c.CityName = 'Green Bay'
 
-select * from [Order Details]
+select *
+from Packers_your_name
 
-select * from Products
+drop table people_your_last_name, city_your_last_name
+drop view Packers_your_name
 
-select * from Customers
+
+create table birthday_employees(
+EName varchar(20)
+)
+
+create proc sp_birthday_employees
+@EName varchar(20)
+as
+begin 
+insert into birthday_employees values (@EName)
+end
+
+begin 
+declare @EMName varchar(20)
+select @EMName = e.LastName
+from Employees e
+where Month(e.BirthDate) = 2
+exec sp_birthday_employees @EMName
+end
+
+drop table birthday_employees
+
+CHECKSUM TABLE original_table, backup_table;
