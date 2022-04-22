@@ -228,3 +228,250 @@ for(int i=1;i<5;i++)
     Console.Write("\n");
 }
 */
+/*
+1.When to use String vs. StringBuilder in C# ?
+    if we want to change one or more data in the string, we should use stringBuilder
+2. What is the base class for all arrays in C#?
+    list interface
+3.How do you sort an array in C#?
+    int[] arrayName = new int[5] {1,2,3,4,5}
+4.What property of an array object can be used to get the total number of elements in an array?
+    length property
+5. Can you store multiple data types in System.Array?
+    No, we cannot store multiple datatype in an Array, we can store similar datatype only in an Array.
+6. What’s the difference between the System.Array.CopyTo() and System.Array.Clone()?
+    The clone is of the same Type as the original Array. 
+The CopyTo() method copies the elements into another existing array.
+*/
+/*
+//Copying an Array
+int [] num = new int[10];
+for(int i=0;i<10;i++)
+    num[i] = i;
+int[] num2 = new int[10];
+for( int i=0;i<10;i++)
+    num2[i] = num[i];
+Console.Write("num: ");
+foreach (int i in num)
+    Console.Write("{0}", i);
+
+Console.Write("\nnum2: ");
+foreach (int i in num2)
+    Console.Write("{0}", i);
+*/
+/*
+//calculate items
+int item = 0, numChange;
+string uInsert;
+bool k = true;
+Console.WriteLine("items: "+item);
+while(k)
+{
+    Console.Write("Enter command (+ item, - item, -- to clear, or others to exit):");
+    uInsert = Console.ReadLine();
+    if (uInsert == "+")
+    {
+        Console.Write("Enter the number of items that are ognna change:");
+        numChange = Convert.ToInt32(Console.ReadLine());
+        item += numChange;
+        Console.WriteLine("items: " + item);
+    }
+    else if (uInsert == "-")
+    {
+        Console.Write("Enter the number of items that are ognna change:");
+        numChange = Convert.ToInt32(Console.ReadLine());
+        item -= numChange;
+        Console.WriteLine("items: " + item);
+    }
+    else if (uInsert == "--")
+    {
+        item = 0;
+        Console.WriteLine("items: " + item);
+    }
+    else
+        k = false;
+}
+*/
+/*
+//Print Prime Numbers
+int a, b, n, d;
+Console.WriteLine("enter the left number of the range");
+a=Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("enter the right number of the range");
+b = Convert.ToInt32(Console.ReadLine());
+n = b - a + 1;
+
+int[] FindPrimesInRange = new int[n];
+for (int i = 0; i < n; i++)
+{
+    FindPrimesInRange[i] = a;
+    a++;
+}
+for (int i = 0; i < n; i++)
+{
+    if (FindPrimesInRange[i] == 1)
+    {
+        FindPrimesInRange[i] = 0;
+        continue;
+    }
+    else
+    {
+        d = FindPrimesInRange[i] / 2 + 1;
+        for (int j = 2; j < d; j++)
+        {
+            if (FindPrimesInRange[i] % j == 0)
+            {
+                FindPrimesInRange[i] = 0;
+                continue;
+            }
+        }
+    }
+}
+for(int i = 0; i < n; i++)
+{
+    if (FindPrimesInRange[i] != 0)
+        Console.Write(FindPrimesInRange[i] + " ");
+}
+*/
+/*
+//sum after array rotate
+string nums;
+int r, j, count=0;
+Console.WriteLine("enter the numbers");
+nums = Console.ReadLine();
+string[] takens = nums.Split();
+int[] numbers = Array.ConvertAll(takens, int.Parse);
+Console.WriteLine("enter the rotate times");
+r = Convert.ToInt32(Console.ReadLine()); 
+
+int l = numbers.Length;
+int[] sum = new int[l];
+for (int i = 0; i < l; i++)
+    sum[i] = 0;
+for (int i = 0; i < l; i++)
+{
+    j = i-1;
+    if (j < 0)
+        j = l - 1;
+    while(count<r)
+    {
+        sum[i] += numbers[j];
+        j--;
+        if (j < 0 )
+            j = l - 1;
+        count++;
+    }
+    count = 0;
+}
+
+for(int i=0;i<l;i++)
+    Console.Write(sum[i]+" ");
+*/
+/*
+Console.WriteLine("enter the numbers");
+string nums = Console.ReadLine();
+string[] takens = nums.Split();
+int[] numbers = Array.ConvertAll(takens, int.Parse);
+int l = numbers.Length, count=0, temp, max=0;
+
+temp = numbers[0];
+
+for (int i = 0; i <l;i++)
+{
+    for(int j = 0; j <l; j++)
+    {
+        if(numbers[i] == numbers[j])
+            count++;
+    }
+    if(count > max)
+    {
+        temp = numbers[i];
+        max = count;
+    }
+    count = 0;
+}
+Console.WriteLine(temp);
+*/
+/*
+reverse a string
+Console.WriteLine("enter a string");
+String readInput = Console.ReadLine();
+char[] charReadInput = readInput.ToCharArray();
+string reverString=string.Empty;
+
+for (int i = charReadInput.Length-1; i >=0 ; i--)
+    reverString+=charReadInput[i];
+Console.WriteLine(reverString);
+*/
+/*
+//reverse the sentence
+Console.WriteLine("enter the sentence");
+string inputSentence = Console.ReadLine();
+string[] takens = inputSentence.Split();
+
+for(int i = takens.Length-1; i >=0 ; i--)
+    Console.Write(takens[i]+" ");
+*/
+/*
+//find and print palindromes in sentence
+Console.WriteLine("enter the sentence");
+string inputSentence = Console.ReadLine();
+string[] takens = inputSentence.Split();
+bool k = true;
+int l;
+for(int i = 0; i < takens.Length; i++)
+{
+    char[] charReadInput = takens[i].ToCharArray();
+    if(charReadInput.Length != 1)
+    {
+        l = charReadInput.Length / 2 + 1;
+        for (int j = 0; j < l; j++)
+        {
+            if (charReadInput[j] != charReadInput[(charReadInput.Length -1 - j)])
+            {
+                k = false;
+                break;
+            }
+        }
+    }
+    if(k)
+        Console.WriteLine(takens[i]);
+    k=true;
+}
+*/
+/*
+//print URL detail
+Console.WriteLine("enter the URL");
+//string readURL = Console.ReadLine();
+char[] readChars = Console.ReadLine().ToCharArray();
+//Console.WriteLine(readChars);
+string temp;
+int count = 0;
+temp=string.Empty;
+for(int i = 0; i < readChars.Length; i++)
+{
+    if (readChars[i].Equals(':'))
+    {
+        Console.WriteLine("protocol: " + temp);
+        temp = string.Empty;
+        continue;
+    }
+    else if (readChars[i].Equals('/'))
+    {
+        count++;
+        if (count > 2)
+        {
+            Console.WriteLine("server: " + temp);
+            temp = string.Empty;
+            count = 0;
+        }
+        continue;
+    }
+    else if (i==readChars.Length-1)
+    {
+        Console.WriteLine("resource: " + temp);
+        continue;
+    }
+    temp += readChars[i];
+}
+*/
