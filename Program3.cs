@@ -38,16 +38,51 @@
     
 14. True/False. The new keyword is used to indicate that a method in a derived class is providing its own 
     implementation of a method.
+    True
 15. True/False. Abstract methods can be used in a normal (non-abstract) class. 
+    False
 16.True/False. Normal (non-abstract) methods can be used in an abstract class. 
+    False
 17. True/False. Derived classes can override methods that were virtual in the base class. 
+    False
 18. True/False. Derived classes can override methods that were abstract in the base class. 
+    False
 19. True/False. In a derived class, you can override a method that was neither virtual non abstract in the 
     base class.
+    true
 20. True/False. A class that implements an interface does not have to provide an implementation for all 
     of the members of the interface.
+    False
 21. True/False. A class that implements an interface is allowed to have other members that aren’t defined 
     in the interface.
+    True
 22. True/False. A class can have more than one base class.
+    True
 23. True/False. A class can implement more than one interface.
+    True
 */
+/*
+//save  array and print reverse
+int[] numbers = new int[10];
+for (int i = 0; i < numbers.Length; i++)
+{
+    numbers[i] = i+1;
+    Console.Write(numbers[i]);
+}
+for(int i = numbers.Length-1; i >=0 ; i--)
+    Console.Write(numbers[i]);
+*/
+
+using ConsoleApp2;
+int a = 0, b = 1, n = 0, temp;
+AddNums add = new AddNums();
+Console.Write("Fibonacci: 0, ");
+
+while (n < 10)
+{
+    Console.Write(b+", ");
+    n++;
+    temp = b;
+    b = add.AddTwoNums(a, b);
+    a = temp;
+}
